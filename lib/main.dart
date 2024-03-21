@@ -1,8 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:oneadmin/firebase_options.dart';
 import 'package:oneadmin/pages/HomePage.dart';
 import 'package:oneadmin/pages/LibraryPage.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -11,10 +17,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Web App with Navigation',
-      home: MyHomePage(),
+      theme: ThemeData(
+        colorScheme:
+            ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(
+          background: const Color.fromARGB(255, 241, 236, 236),
+        ),
+      ),
+      home: const MyHomePage(),
     );
   }
 }
@@ -61,10 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 40,
                   child: TextField(
                     decoration: InputDecoration(
+                      focusColor: Colors.white,
+                      fillColor: Colors.white,
                       hintText: 'Search...',
-                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: const Icon(Icons.search),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(5.0),
                       ),
                     ),
                   ),
@@ -78,6 +92,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           drawer: Drawer(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(0.0),
+                  topRight: Radius.circular(0.0),
+                  bottomLeft: Radius.circular(0),
+                  bottomRight: Radius.circular(0)),
+            ),
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
@@ -113,6 +134,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(
                   width: drawerWidth,
                   child: Drawer(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(0.0),
+                          topRight: Radius.circular(0.0),
+                          bottomLeft: Radius.circular(0),
+                          bottomRight: Radius.circular(0)),
+                    ),
                     child: ListView(
                       padding: EdgeInsets.zero,
                       children: [

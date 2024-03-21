@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oneadmin/pages/MovieUploadSection.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,7 +14,12 @@ class HomePage extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  print('Container clicked!');
+                  // Navigator.pushReplacement(context,
+                  //     MaterialPageRoute(builder: (context) => const Upload()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>  MovieUploadForm()));
                   // Add your button functionality here
                 },
                 child: Container(
@@ -27,7 +33,7 @@ class HomePage extends StatelessWidget {
                           blurRadius: 4.0, // Blur the shadow slightly
                         ),
                       ],
-                      color: const Color.fromARGB(32, 147, 147, 147),
+                      color: const Color.fromARGB(252, 255, 253, 253),
                       borderRadius: const BorderRadius.all(Radius.circular(5))),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
